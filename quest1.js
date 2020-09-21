@@ -1,15 +1,92 @@
-const img=document.getElementById("image");
-    function webpage3(){
-        const image3=
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQtuOcBUlHSttx3Gfn7B1as_IvkJF8bWboyg&usqp=CAU";
-        img.src=image3;
+let targets=[{
+    name:'keerthi',
+    age :24,
+    city : 'delhi',
+    salary : 18000,
+   },
+   {
+    name: 'ravi',
+    age : 25,
+    city : 'Mumbai',
+    salary : 20000,
+   },
+   {
+    name: 'vijaya',
+    age : 25,
+    city : 'chennai',
+    salary : 15000,
+   },
+   {
+    name: 'ragu',
+    age : 28,
+    city : 'kerala',
+    salary : 50000,
+   }
+   {
+    name : 'kavitha',
+    age: 23,
+    city: 'hyderabad'
+    salary: 25000,
+   }
+}
+   
+  
+
+function display(targets){
+    let data='';
+    
+   
+    targets.forEach(function(element,index){
+    let currentrow=`<tr>
+    <td>${index + 1}</td>
+    <td>${element.name}</td>
+    <td>${element.age}</td>
+    <td>${element.city}</td>
+    <td>${element.salary}</td>
+    <td><button onclick="delete_ele(${index})" class="del_btn">delete</button></td>`;
+   
+    data+=currentrow;
+    
+    });
+    document.getElementById('tablerows').innerHTML = data;
+   };
+   function insert(event){
+    event.preventDefault()
+    let targetitem={};
+    let ins_name=document.getElementById("ins-name").value;
+    let ins_age = document.getElementById("ins-age").value;
+    let ins_city = document.getElementById("ins-city").value;
+    let ins_salary= document.getElementById("ins-salary").value;
+    targetitem.name=ins_name;
+    targetitem.age = Number(ins_age);
+    targetitem.city = ins_city;
+    targetitem.salary =Number(ins_salary);
+    console.log(ins_salary);
+   
+    targets.push(targetitem);
+    display(targets);
+   return false;
+   }
+   display(targets);
+   function search()
+   {
+    let ser_ele= document.getElementById("searching").value;
+   let ser_res_arr=targets.filter(function(targets){
+    if (targets.name.indexOf(ser_ele) != -1)
+    {
+    return targets.name.indexOf(ser_ele) != -1;
     }
-    function webpage2(){
-        const image2="https://cdn.pixabay.com/photo/2014/12/14/12/26/evening-567840__340.jpg";
-        img.src=image2;
+    else if (targets.city.indexOf(ser_ele) != -1){
+    return targets.city.indexOf(ser_ele) != -1;
+   
     }
-    function webpage1(){
-    const image1=
-    "https://img.freepik.com/free-photo/blue-mountains-famous-tourism-scenery-lijiang_1417-1143.jpg?size=626&ext=jpg";
-    img.src=image1;  
-    }
+    ;
+   })
+   display(ser_res_arr);
+   }
+   function delete_ele(index){
+    console.log(index);
+    targets.splice(index,1);
+    display(targets);
+   
+   }
