@@ -22,13 +22,9 @@ let targets=[{
     city : 'kerala',
     salary : 50000,
    }
-   {
-    name : 'kavitha',
-    age: 23,
-    city: 'hyderabad'
-    salary: 25000,
-   }
-}
+   
+
+]
    
   
 
